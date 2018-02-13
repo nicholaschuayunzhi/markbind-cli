@@ -1,6 +1,6 @@
 #! /bin/bash
 
-markbind build
+node ../index.js build
 
 diff -r expected _site
 
