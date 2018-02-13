@@ -41,7 +41,7 @@
   "scripts": {
     "lint": "./node_modules/.bin/eslint .",
     "pretest": "npm run lint",
-    "test": "echo \"No Tests\""
+    "test": "cd test && test.sh"
   },
   "devDependencies": {
     "eslint": "^4.16.0",
