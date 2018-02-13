@@ -1,0 +1,18 @@
+{
+  "baseUrl": "",
+  "pages": [
+    {
+      "src": "index.md",
+      "title": "Hello World"
+    }
+  ],
+  "ignore": [
+    "_site/*",
+    "site.json",
+    "expected",
+    "test.sh"
+  ],
+  "deploy": {
+    "message": "Site Update."
+  }
+}
