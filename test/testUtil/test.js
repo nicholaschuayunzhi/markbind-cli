@@ -25,10 +25,14 @@ for (let i = 0; i < expectedPaths.length; i += 1) {
   const actual = fs.readFileSync(resolvedActualFilePath, 'utf8');
   if (path.parse(resolvedActualFilePath).ext !== '.html') {
     if (expected !== actual) {
-      throw Error(`${resolvedExpectedFilePath} and ${resolvedActualFilePath} are not equal`);
+      throw new Error(`${resolvedExpectedFilePath} and ${resolvedActualFilePath} are not equal`);
     }
   } else {
-    diffHtml(expected, actual);
+    try {
+      diffHtml(expected, actual);
+    } catch (err) {
+      throw new Error(`${err.message} in ${expectedFilePath}`);
+    }
   }
 }
 
