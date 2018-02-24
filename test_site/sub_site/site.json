@@ -1,0 +1,16 @@
+{
+  "baseUrl": "/sub_site",
+  "pages": [
+    {
+      "src": "index.md",
+      "title": "Hello World"
+    }
+  ],
+  "ignore": [
+    "_site/*",
+    "site.json"
+  ],
+  "deploy": {
+    "message": "Site Update."
+  }
+}
