@@ -10,7 +10,7 @@
     "_site/*",
     "site.json",
     "expected",
-    "test.sh"
+    "testUtil/*"
   ],
   "deploy": {
     "message": "Site Update."

@@ -22,6 +22,7 @@
     "chokidar": "^1.6.1",
     "clear": "^0.0.1",
     "commander": "^2.9.0",
+    "diff": "^3.4.0",
     "ejs": "^2.5.5",
     "figlet": "^1.2.0",
     "fs-extra-promise": "^0.4.1",
@@ -40,8 +41,8 @@
   },
   "scripts": {
     "lint": "./node_modules/.bin/eslint .",
-    "pretest": "npm run lint",
-    "test": "cd test && ./test.sh"
+    "pretest": "",
+    "test": "cd test/testUtil && ./test.sh"
   },
   "devDependencies": {
     "eslint": "^4.16.0",

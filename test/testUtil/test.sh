@@ -1,8 +1,8 @@
 #! /bin/bash
 
-node ../index.js build
+node ../../index.js build ../
 
-diff -r expected _site
+node test.js
 
 if [ $? -eq 0 ]
 then
