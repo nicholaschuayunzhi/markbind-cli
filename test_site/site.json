@@ -1,0 +1,24 @@
+{
+  "baseUrl": "/test_site",
+  "pages": [
+    {
+      "src": "index.md",
+      "title": "Hello World"
+    },
+    {
+      "src": "bugs/index.md",
+      "title": "Open Bugs"
+    }
+  ],
+  "ignore": [
+    "_site/*",
+    "site.json",
+    "expected/*",
+    "testUtil/*",
+    "test.sh",
+    "*.md"
+  ],
+  "deploy": {
+    "message": "Site Update."
+  }
+}
