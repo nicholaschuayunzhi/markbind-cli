@@ -12,7 +12,11 @@
   ],
   "ignore": [
     "_site/*",
-    "site.json"
+    "site.json",
+    "expected/*",
+    "testUtil/*",
+    "test.sh",
+    "*.md"
   ],
   "deploy": {
     "message": "Site Update."
