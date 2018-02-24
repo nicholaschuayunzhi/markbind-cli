@@ -10,7 +10,7 @@ if (expectedPaths.length !== actualPaths.length) {
   throw new Error('Unequal number of files');
 }
 
-for (let i = 0; i < expectedPaths.length; ++i) {
+for (let i = 0; i < expectedPaths.length; i += 1) {
   const expectedFilePath = expectedPaths[i];
   const actualFilePath = actualPaths[i];
 

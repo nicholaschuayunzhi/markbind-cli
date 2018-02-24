@@ -1,5 +1,68 @@
 const jsdiff = require('diff');
 
+
+/**
+ * Checks if fragment ends with a an unclosed path
+ * true: src="
+ * false: src=""
+ *        src="..."
+ */
+const endsWithUnclosedPath = (fragment) => {
+  for (let i = fragment.length - 1; i > 4; i -= 1) {
+    if (fragment[i] === '"') {
+      if (fragment.substring(i - 4, i) === 'src=' || fragment.substring(i - 5, i) === 'href=') {
+        return true;
+      }
+      return false;
+    }
+  }
+  return false;
+};
+
+/**
+ * Checks if the ending portion of the fragment is inside an html tag
+ * true: <tag src=".../
+ * false: <text> src="..
+ *        <div/>
+ */
+const endsWithOpeningTag = (fragment) => {
+  for (let i = fragment.length - 1; i >= 0; i -= 1) {
+    if (fragment[i] === '<') {
+      return true;
+    }
+    if (fragment[i] === '>') {
+      return false;
+    }
+  }
+  return false;
+};
+
+/**
+ * Checks if the start portion of the fragment closes a path
+ * Assumes that previous fragment was the start of or was within an unclosed path
+ * true: "
+ *       path/to/file.jpg"
+ *       file.jpg" <
+ * false: < src="...
+ *        > "...
+ */
+const startsWithClosedPath = (fragment) => {
+  for (let i = 0; i <= fragment.length - 1; i += 1) {
+    if (fragment[i] === '<' || fragment[i] === '>') {
+      return false;
+    }
+    if (fragment[i] === '"') {
+      return true;
+    }
+  }
+  return false;
+};
+
+/**
+ * Checks if diff is a path separator character
+ */
+const isPathSeparatorDiff = diff => diff === '\\' || diff === '/';
+
 /**
  * Checks for any diffs between expected.html and actual.html
  * @param {string} expected
@@ -34,67 +97,5 @@ const diffHtml = (expected, actual) => {
     }
   });
 };
-
-/**
- * Checks if fragment ends with a an unclosed path
- * true: src="
- * false: src=""
- *        src="..."
- */
-const endsWithUnclosedPath = (fragment) => {
-  for (let i = fragment.length - 1; i > 4; i--) {
-    if (fragment[i] === '"') {
-      if (fragment.substring(i - 4, i) === 'src=' || fragment.substring(i - 5, i) === 'href=') {
-        return true;
-      }
-      return false;
-    }
-  }
-  return false;
-};
-
-/**
- * Checks if the ending portion of the fragment is inside an html tag
- * true: <tag src=".../
- * false: <text> src="..
- *        <div/>
- */
-const endsWithOpeningTag = (fragment) => {
-  for (let i = fragment.length - 1; i >= 0; i--) {
-    if (fragment[i] === '<') {
-      return true;
-    }
-    if (fragment[i] === '>') {
-      return false;
-    }
-  }
-  return false;
-};
-
-/**
- * Checks if the start portion of the fragment closes a path
- * Assumes that previous fragment was the start of or was within an unclosed path
- * true: "
- *       path/to/file.jpg"
- *       file.jpg" <
- * false: < src="...
- *        > "...
- */
-const startsWithClosedPath = (fragment) => {
-  for (let i = 0; i <= fragment.length - 1; i++) {
-    if (fragment[i] === '<' || fragment[i] === '>') {
-      return false;
-    }
-    if (fragment[i] === '"') {
-      return true;
-    }
-  }
-  return false;
-};
-
-/**
- * Checks if diff is a path separator character
- */
-const isPathSeparatorDiff = diff => diff === '\\' || diff === '/';
 
 module.exports = diffHtml;

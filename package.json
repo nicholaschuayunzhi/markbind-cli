@@ -41,7 +41,7 @@
   },
   "scripts": {
     "lint": "./node_modules/.bin/eslint .",
-    "pretest": "",
+    "pretest": "npm run lint",
     "test": "cd test/testUtil && ./test.sh"
   },
   "devDependencies": {
