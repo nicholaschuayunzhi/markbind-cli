@@ -16,3 +16,14 @@ blockquote {
         background-color: #fff;
     }
 }
+.radio-list-item,
+.task-list-item {
+    margin: 0 0 0 -1em;
+    list-style-type: none;
+}
+
+.radio-list-input,
+.task-list-item-checkbox {
+    height: 10px;
+    width: 10px;
+}
